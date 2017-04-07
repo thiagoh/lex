@@ -6,17 +6,28 @@
 
     <style>
         body {
-            width: 80%;
             margin: 0 auto;
             text-align: justify;
             color: #111;
-            background: #FEFEFE;
+            background: #f9f9f9;
             font-family: 'Open Sans', Verdana, Helvetica, Arial, sans-serif;
             line-height: 1.7;
         }
         
-        header {
-            margin-top: 10px;
+        main {
+            margin: 0 auto;
+            width: 80%;
+            font-size: 1.2em;
+            margin-top: 50px;
+        }
+        
+        .nav {
+            position: fixed;
+            width: 100%;
+            background: #f9f9f9;
+            padding: 10px;
+            box-sizing: border-box;
+            top: 0;
         }
         
         a {
@@ -25,10 +36,6 @@
         
         a.repo {
             float: right;
-        }
-        
-        main {
-            font-size: 1.2em;
         }
         
         .button {
@@ -44,8 +51,14 @@
             display: inline;
         }
         
+        @media screen and (max-width: 1024px) {
+            main {
+                width: 94%;
+            }
+        }
+        
         @media print {
-            body {
+            main {
                 width: 100%;
                 font-size: 0.9em;
             }
@@ -55,16 +68,18 @@
     <script>
         var initialFontSize = '1.2em',
             bgColors = [
-                ['#eee', '#111'],
+                ['#f9f9f9', '#111'],
                 // ['#e3ceb9', '#111'],
                 ['#e8d4c1', '#111'],
-                ['#111', '#eee'],
+                ['#111', '#f9f9f9'],
             ],
             bgColorIndex = 0;
 
         function changeBgColor() {
 
-            var colors, arras = document.getElementsByTagName('a');
+            var colors,
+                nav = document.getElementById('nav'),
+                arras = document.getElementsByTagName('a');
 
             if (++bgColorIndex >= bgColors.length) {
                 bgColorIndex = 0;
@@ -73,6 +88,7 @@
             colors = bgColors[bgColorIndex];
 
             document.body.style.backgroundColor = colors[0];
+            nav.style.backgroundColor = colors[0];
             document.body.style.color = colors[1];
 
             for (var i = 0; i < arras.length; i++) {
@@ -105,10 +121,7 @@
 </head>
 
 <body bgcolor="white">
-    <header>
-        <title>
-            Lex - A Lexical Analyzer Generator
-        </title>
+    <div id="nav" class="nav">
         <a href="http://dinosaur.compilertools.net/">The Lex &amp; Yacc Page</a>
         <div class="spacer-20">&nbsp;</div>
         <span class="button" onclick="fontSize(+1)"> +A</span>
@@ -117,13 +130,15 @@
         <span> | </span>
         <span class="button" onclick="changeBgColor()"> change bgColor</span>
         <a class="repo" href="https://github.com/thiagoh/lex"> Github repository</a>
-        <h1>
-            Lex - A Lexical Analyzer Generator
-        </h1>
-        <b><i>M. E. Lesk and E. Schmidt</i></b>
-    </header>
+    </div>
 
     <main id="main">
+        <div class="title">
+            <h1>
+                Lex - A Lexical Analyzer Generator
+            </h1>
+            <b><i>M. E. Lesk and E. Schmidt</i></b>
+        </div>
         <br>
         <br>
         <h2>
