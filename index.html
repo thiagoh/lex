@@ -18,7 +18,7 @@
             margin: 0 auto;
             width: 80%;
             font-size: 1.2em;
-            margin-top: 50px;
+            margin-top: 100px;
         }
         
         .nav {
@@ -52,8 +52,12 @@
         }
         
         @media screen and (max-width: 1024px) {
+            .nav {
+                font-size: 2em;
+            }
             main {
                 width: 94%;
+                font-size: 0.9em;
             }
         }
         
@@ -66,7 +70,7 @@
     </style>
 
     <script>
-        var initialFontSize = '1.2em',
+        var initialFontSize = window.innerWidth <= 1024 ? '0.9em' : '1.2em',
             bgColors = [
                 ['#f9f9f9', '#111'],
                 // ['#e3ceb9', '#111'],
@@ -115,6 +119,7 @@
             }
 
             main.style.fontSize = size + 'em';
+            // console.log(main.style.fontSize);
         }
     </script>
 
@@ -129,7 +134,7 @@
         <span class="button" onclick="fontSize(-1)"> -a</span>
         <span> | </span>
         <span class="button" onclick="changeBgColor()"> change bgColor</span>
-        <a class="repo" href="https://github.com/thiagoh/lex"> Github repository</a>
+        <a class="repo" href="https://github.com/thiagoh/lex"> GitHub</a>
     </div>
 
     <main id="main">
