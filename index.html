@@ -8,12 +8,32 @@
         body {
             width: 80%;
             margin: 0 auto;
-            font-size: 1.2em;
             text-align: justify;
             color: #111;
             background: #FEFEFE;
             font-family: 'Open Sans', Verdana, Helvetica, Arial, sans-serif;
             line-height: 1.7;
+        }
+        
+        a {
+            color: #111;
+        }
+        
+        main {
+            font-size: 1.2em;
+        }
+        
+        .button {
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            text-decoration: underline;
+        }
+        
+        .spacer-20 {
+            margin: 0 20px 0 0;
+            display: inline;
         }
         
         @media print {
@@ -24,6 +44,55 @@
         }
     </style>
 
+    <script>
+        var initialFontSize = '1.2em',
+            bgColors = [
+                ['#eee', '#111'],
+                ['#e3ceb9', '#111'],
+                ['#111', '#eee'],
+            ],
+            bgColorIndex = 0;
+
+        function changeBgColor() {
+
+            var colors, arras = document.getElementsByTagName('a');
+
+            if (++bgColorIndex >= bgColors.length) {
+                bgColorIndex = 0;
+            }
+
+            colors = bgColors[bgColorIndex];
+
+            document.body.style.backgroundColor = colors[0];
+            document.body.style.color = colors[1];
+
+            for (var i = 0; i < arras.length; i++) {
+                arras[i].style.color = colors[1];
+            }
+        }
+
+        function fontSize(delta) {
+
+            var main = document.getElementById('main');
+
+            if (main.style.fontSize.trim() === '') {
+                main.style.fontSize = initialFontSize;
+            }
+
+            var size = parseFloat(main.style.fontSize);
+
+            if (delta > 0) {
+                size += 0.1;
+            } else if (delta < 0) {
+                size -= 0.1;
+            } else {
+                return;
+            }
+
+            main.style.fontSize = size + 'em';
+        }
+    </script>
+
 </head>
 
 <body bgcolor="white">
@@ -31,15 +100,20 @@
         <title>
             Lex - A Lexical Analyzer Generator
         </title>
-    </header>
-
-    <main>
         <a href="http://dinosaur.compilertools.net/">The Lex &amp; Yacc Page</a>
+        <div class="spacer-20">&nbsp;</div>
+        <span class="button" onclick="fontSize(+1)"> +A</span>
+        <span> | </span>
+        <span class="button" onclick="fontSize(-1)"> -a</span>
+        <span> | </span>
+        <span class="button" onclick="changeBgColor()"> change bgColor</span>
         <h1>
             Lex - A Lexical Analyzer Generator
         </h1>
         <b><i>M. E. Lesk and E. Schmidt</i></b>
-        <br>
+    </header>
+
+    <main id="main">
         <br>
         <br>
         <h2>
